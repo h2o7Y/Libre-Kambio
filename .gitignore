@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Flatpak / build output
+.flatpak-builder/
+.flatpak-build/
+.flatpak-repo/
+repo/
+builddir/
+*.flatpak
+
+# Runtime/local data
+settings.json
+crash.log
+*.log
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+*~
+*.swp

@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Name=Libre Kambio
+GenericName=Currency converter
+GenericName[es]=Conversor de divisas
+Comment=Instant currency conversion using official central-bank reference data
+Comment[es]=Conversión instantánea de divisas con datos oficiales de referencia de bancos centrales
+Exec=currency-converter
+Icon=io.github.h2o7y.LibreKambioCurrency
+Terminal=false
+Categories=Utility;Office;
+Keywords=currency;exchange;rates;money;EUR;USD;ECB;central bank;
+Keywords[es]=divisas;moneda;cambio;tipos;EUR;USD;BCE;banco central;
+StartupNotify=true

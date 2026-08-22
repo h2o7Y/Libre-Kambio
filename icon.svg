@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Gradiente para la flecha superior -->
+    <linearGradient id="topArrowGrad" x1="15%" y1="85%" x2="85%" y2="15%">
+      <stop offset="0%" stop-color="#00d2b4"/>
+      <stop offset="50%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#4ade80"/>
+    </linearGradient>
+
+    <!-- Gradiente para la flecha inferior -->
+    <linearGradient id="bottomArrowGrad" x1="85%" y1="15%" x2="15%" y2="85%">
+      <stop offset="0%" stop-color="#00f0ff"/>
+      <stop offset="60%" stop-color="#0077ff"/>
+      <stop offset="100%" stop-color="#0055ff"/>
+    </linearGradient>
+
+    <!-- Gradiente para el símbolo central (C) -->
+    <linearGradient id="centerSymbolGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f5d4"/>
+      <stop offset="50%" stop-color="#00b4d8"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rejilla del globo terráqueo de fondo -->
+  <g fill="none" stroke="#0ea5e9" stroke-width="3.5" stroke-opacity="0.35">
+    <!-- Círculo exterior del globo -->
+    <circle cx="256" cy="256" r="140"/>
+    <!-- Eje vertical y horizontal -->
+    <line x1="256" y1="116" x2="256" y2="396"/>
+    <line x1="116" y1="256" x2="396" y2="256"/>
+    <!-- Meridianos (longitud) -->
+    <ellipse cx="256" cy="256" rx="85" ry="140"/>
+    <ellipse cx="256" cy="256" rx="40" ry="140"/>
+    <!-- Paralelos (latitud) -->
+    <path d="M 148 185 Q 256 220 364 185"/>
+    <path d="M 148 327 Q 256 292 364 327"/>
+  </g>
+
+  <!-- Flechas circulares de intercambio -->
+  <g>
+    <!-- Flecha superior (Verde / Turquesa) -->
+    <path d="M 88 200 A 195 195 0 0 1 370 102 L 360 70 L 438 120 L 372 170 L 382 135 A 165 165 0 0 0 114 220 Z" 
+          fill="url(#topArrowGrad)"/>
+
+    <!-- Flecha inferior (Azul / Cyan) -->
+    <g transform="rotate(180 256 256)">
+      <path d="M 88 200 A 195 195 0 0 1 370 102 L 360 70 L 438 120 L 372 170 L 382 135 A 165 165 0 0 0 114 220 Z" 
+            fill="url(#bottomArrowGrad)"/>
+    </g>
+  </g>
+
+  <!-- Símbolo central 'C' tipo divisa / cripto -->
+  <g fill="url(#centerSymbolGrad)">
+    <!-- Barras verticales superiores -->
+    <rect x="236" y="118" width="15" height="38" rx="4"/>
+    <rect x="265" y="118" width="15" height="38" rx="4"/>
+
+    <!-- Barras verticales inferiores -->
+    <rect x="236" y="356" width="15" height="38" rx="4"/>
+    <rect x="265" y="356" width="15" height="38" rx="4"/>
+
+    <!-- Cuerpo principal de la 'C' -->
+    <path d="M 338 190 A 105 105 0 1 0 338 322 L 302 294 A 62 62 0 1 1 302 218 Z"/>
+  </g>
+</svg>

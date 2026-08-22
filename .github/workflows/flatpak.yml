@@ -1,0 +1,46 @@
+name: Build Flatpak
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  flatpak:
+    name: Flatpak x86_64
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/flathub-infra/flatpak-github-actions:gnome-48
+      options: --privileged
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Read application version
+        id: app
+        shell: bash
+        run: |
+          version="$(python3 - <<'PY'
+          import re
+          from pathlib import Path
+          text = Path('main.py').read_text(encoding='utf-8')
+          match = re.search(r'^APP_VERSION\s*=\s*"([^"]+)"', text, re.MULTILINE)
+          if not match:
+              raise SystemExit('APP_VERSION not found')
+          print(match.group(1))
+          PY
+          )"
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Build Flatpak bundle
+        uses: flatpak/flatpak-github-actions/flatpak-builder@v6
+        with:
+          bundle: Libre-Kambio-${{ steps.app.outputs.version }}.flatpak
+          manifest-path: io.github.h2o7y.LibreKambioCurrency.json
+          cache-key: flatpak-builder-${{ github.sha }}
+          artifact-name: Libre-Kambio-${{ steps.app.outputs.version }}-flatpak

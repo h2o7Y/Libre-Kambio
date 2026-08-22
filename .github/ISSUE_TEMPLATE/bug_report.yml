@@ -1,0 +1,68 @@
+name: Bug report
+description: Report a reproducible problem in Libre Kambio
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not post credentials, private files or sensitive information.
+
+  - type: input
+    id: version
+    attributes:
+      label: Libre Kambio version
+      placeholder: "1.9.31"
+    validations:
+      required: true
+
+  - type: input
+    id: system
+    attributes:
+      label: Linux distribution / desktop
+      placeholder: "Fedora KDE, Wayland"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install
+    attributes:
+      label: Installation type
+      options:
+        - Flatpak built from this repository
+        - GitHub Actions Flatpak artifact
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What happened, and what did you expect?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Select ...
+        3. Press ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: Source/status details
+      description: If this concerns a currency source, include the visible source/status/date text and currency code.
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log excerpt
+      description: Paste only the relevant lines. Remove private data first.
+      render: shell

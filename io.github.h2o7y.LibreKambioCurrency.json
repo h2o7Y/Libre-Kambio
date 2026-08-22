@@ -1,0 +1,83 @@
+{
+  "id": "io.github.h2o7y.LibreKambioCurrency",
+  "runtime": "org.kde.Platform",
+  "runtime-version": "6.11",
+  "sdk": "org.kde.Sdk",
+  "base": "io.qt.PySide.BaseApp",
+  "base-version": "6.11",
+  "command": "currency-converter",
+  "build-options": {
+    "env": {
+      "BASEAPP_REMOVE_WEBENGINE": "1",
+      "BASEAPP_DISABLE_NUMPY": "1"
+    }
+  },
+  "finish-args": [
+    "--share=network",
+    "--socket=wayland"
+  ],
+  "cleanup-commands": [
+    "/app/cleanup-BaseApp.sh"
+  ],
+  "modules": [
+    {
+      "name": "currency-converter",
+      "buildsystem": "simple",
+      "build-commands": [
+        "install -Dm755 currency-converter /app/bin/currency-converter",
+        "install -Dm644 main.py /app/lib/io.github.h2o7y.LibreKambioCurrency/main.py",
+        "install -Dm644 app_logic.py /app/lib/io.github.h2o7y.LibreKambioCurrency/app_logic.py",
+        "install -Dm644 rates.py /app/lib/io.github.h2o7y.LibreKambioCurrency/rates.py",
+        "install -Dm644 latam_rates.py /app/lib/io.github.h2o7y.LibreKambioCurrency/latam_rates.py",
+        "install -Dm644 io.github.h2o7y.LibreKambioCurrency.desktop /app/share/applications/io.github.h2o7y.LibreKambioCurrency.desktop",
+        "install -Dm644 io.github.h2o7y.LibreKambioCurrency.metainfo.xml /app/share/metainfo/io.github.h2o7y.LibreKambioCurrency.metainfo.xml",
+        "install -Dm644 aed-symbol.png /app/lib/io.github.h2o7y.LibreKambioCurrency/aed-symbol.png",
+        "install -Dm644 sar-symbol.png /app/lib/io.github.h2o7y.LibreKambioCurrency/sar-symbol.png",
+        "install -Dm644 icon.svg /app/lib/io.github.h2o7y.LibreKambioCurrency/icon.svg",
+        "install -Dm644 icon.svg /app/share/icons/hicolor/scalable/apps/io.github.h2o7y.LibreKambioCurrency.svg"
+      ],
+      "sources": [
+        {
+          "type": "file",
+          "path": "currency-converter"
+        },
+        {
+          "type": "file",
+          "path": "main.py"
+        },
+        {
+          "type": "file",
+          "path": "app_logic.py"
+        },
+        {
+          "type": "file",
+          "path": "rates.py"
+        },
+        {
+          "type": "file",
+          "path": "latam_rates.py"
+        },
+        {
+          "type": "file",
+          "path": "io.github.h2o7y.LibreKambioCurrency.desktop"
+        },
+        {
+          "type": "file",
+          "path": "io.github.h2o7y.LibreKambioCurrency.metainfo.xml"
+        },
+        {
+          "type": "file",
+          "path": "aed-symbol.png"
+        },
+        {
+          "type": "file",
+          "path": "sar-symbol.png"
+        },
+        {
+          "type": "file",
+          "path": "icon.svg"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.png binary
+*.svg text eol=lf
+
+# Keep GitHub-only maintenance files out of git-archive source tarballs only when desired.
+# (No export-ignore rules are set by default so release source archives remain complete.)

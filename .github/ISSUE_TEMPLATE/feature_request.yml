@@ -1,0 +1,25 @@
+name: Feature request
+description: Suggest an improvement to Libre Kambio
+title: "[Feature] "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What would you like to improve?
+      description: Describe the use case rather than only the implementation.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Official sources (if this is about a currency)
+      description: Link the first-party central-bank or monetary-authority source when possible.

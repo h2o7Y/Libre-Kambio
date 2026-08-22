@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.h2o7y.LibreKambioCurrency</id>
+  <name>Libre Kambio</name>
+  <summary>Convert currencies instantly</summary>
+  <summary xml:lang="es">Convierte divisas al instante</summary>
+  <developer id="io.github.h2o7y">
+    <name translate="no">h2o7Y</name>
+  </developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <description>
+    <p>Libre Kambio is an open-source Linux desktop currency converter for instant, simultaneous conversion across multiple currencies.</p>
+    <p>It uses the European Central Bank as the primary source for supported euro reference rates, official Bank of Russia data for additional currencies and independent cross-checking, official USD pegs for selected currencies, and optional official sources from selected Spanish-speaking Latin American central banks.</p>
+    <p>It also provides custom groups, manual ordering, regional organization, source/date visibility and conservative handling of missing or stale source data.</p>
+    <p>Reference information only: displayed rates are not guaranteed transaction rates and the software does not provide financial, accounting, tax or legal advice.</p>
+    <p xml:lang="es">Libre Kambio es un conversor de divisas de escritorio de código abierto para Linux que permite conversiones instantáneas y simultáneas en múltiples divisas.</p>
+    <p xml:lang="es">Usa el Banco Central Europeo como fuente principal para los tipos de referencia del euro compatibles, datos oficiales del Banco de Rusia para divisas adicionales y comprobación independiente, pegs oficiales al USD para determinadas divisas y fuentes oficiales opcionales de determinados bancos centrales de Hispanoamérica.</p>
+    <p xml:lang="es">También ofrece grupos personalizados, orden manual, organización regional, visibilidad de fuentes/fechas y un tratamiento conservador de datos ausentes u obsoletos.</p>
+    <p xml:lang="es">Información de referencia únicamente: los tipos mostrados no se garantizan como tipos transaccionales y el software no presta asesoramiento financiero, contable, fiscal ni jurídico.</p>
+  </description>
+  <url type="homepage">https://github.com/h2o7y/Libre-Kambio</url>
+  <url type="bugtracker">https://github.com/h2o7y/Libre-Kambio/issues</url>
+  <url type="help">https://github.com/h2o7y/Libre-Kambio#readme</url>
+  <launchable type="desktop-id">io.github.h2o7y.LibreKambioCurrency.desktop</launchable>
+  <provides>
+    <binary>currency-converter</binary>
+  </provides>
+  <categories>
+    <category>Utility</category>
+    <category>Office</category>
+  </categories>
+  <keywords>
+    <keyword>currency</keyword>
+    <keyword>exchange rate</keyword>
+    <keyword>central bank</keyword>
+    <keyword>Flatpak</keyword>
+    <keyword xml:lang="es">divisas</keyword>
+    <keyword xml:lang="es">tipo de cambio</keyword>
+    <keyword xml:lang="es">banco central</keyword>
+  </keywords>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.9.31" date="2026-08-22"/>
+    <release version="1.9.30" date="2026-08-22"/>
+    <release version="1.9.29" date="2026-08-22"/>
+    <release version="1.9.28" date="2026-08-22"/>
+    <release version="1.9.27" date="2026-08-22"/>
+    <release version="1.9.26" date="2026-08-22"/>
+    <release version="1.9.6" date="2026-08-21"/>
+    <release version="1.9.5" date="2026-08-21"/>
+    <release version="1.9.4" date="2026-08-21"/>
+    <release version="1.9.1" date="2026-08-21"/>
+    <release version="1.9.0" date="2026-08-21"/>
+    <release version="1.8.1" date="2026-08-20"/>
+    <release version="1.5" date="2026-08-20"/>
+    <release version="1.4" date="2026-08-20"/>
+    <release version="1.3.1" date="2026-08-20"/>
+    <release version="1.3" date="2026-08-20"/>
+  </releases>
+</component>

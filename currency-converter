@@ -1,0 +1,3 @@
+#!/bin/sh
+set -eu
+exec python3 /app/lib/io.github.h2o7y.LibreKambioCurrency/main.py "$@"
