@@ -27,6 +27,32 @@ Libre Kambio is a privacy-friendly Linux desktop currency converter built around
 
 **Official central-bank data · Instant multi-currency conversion · ECB + Bank of Russia · USD pegs · Independent cross-checking · Optional Latin American central-bank sources · Custom organization · Privacy-friendly · Open source · Linux desktop**
 
+## Supported currencies (65)
+
+Libre Kambio currently supports **65 currencies**:
+
+**ECB / euro reference rates (30):**  
+EUR, USD, JPY, CZK, DKK, GBP, HUF, PLN, RON, SEK, CHF, ISK, NOK, TRY, AUD, BRL, CAD, CNY, HKD, IDR, ILS, INR, KRW, MXN, MYR, NZD, PHP, SGD, THB, ZAR
+
+**Bank of Russia (24):**  
+RUB, UAH, AZN, DZD, AMD, BYN, BOB, VND, EGP, IRR, CUP, MMK, GEL, MDL, NGN, TMT, RSD, KGS, TJS, BDT, KZT, MNT, UZS, ETB
+
+**Official USD pegs (5):**  
+AED, SAR, QAR, BHD, OMR
+
+**Optional Latin American central-bank currencies (6):**  
+ARS, CLP, COP, PYG, PEN, UYU
+
+Optional Latin American currencies can be enabled individually in the application settings.
+
+## Compatibility
+
+**Tested environment:** Fedora KDE Plasma on Wayland.
+
+Libre Kambio is distributed as a **Flatpak** and is expected to work on modern x86_64 Linux distributions with Flatpak and Wayland support. Other distributions and desktop environments have not yet been extensively tested.
+
+The current Flatpak build targets **x86_64** and **Wayland**. X11-only sessions and other CPU architectures are not currently supported by the published build.
+
 ## Important disclaimer
 
 > **Reference information only.** Exchange rates and conversions may be delayed, incomplete or inaccurate and are not guaranteed transaction rates. Libre Kambio does not provide financial, investment, accounting, tax or legal advice. Verify important values with the original official source and, where appropriate, your bank or professional adviser. **Use of the software and its output is at your own risk.**

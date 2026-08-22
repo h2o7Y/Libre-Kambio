@@ -27,6 +27,32 @@ Libre Kambio es un conversor de divisas de escritorio para Linux, respetuoso con
 
 **Datos oficiales de bancos centrales · Conversión instantánea multidivisa · BCE + Banco de Rusia · Pegs USD · Comprobación independiente · Bancos centrales hispanoamericanos opcionales · Organización personalizada · Privacidad · Código abierto · Escritorio Linux**
 
+## Divisas compatibles (65)
+
+Libre Kambio admite actualmente **65 divisas**:
+
+**BCE / tipos de referencia del euro (30):**  
+EUR, USD, JPY, CZK, DKK, GBP, HUF, PLN, RON, SEK, CHF, ISK, NOK, TRY, AUD, BRL, CAD, CNY, HKD, IDR, ILS, INR, KRW, MXN, MYR, NZD, PHP, SGD, THB, ZAR
+
+**Banco de Rusia (24):**  
+RUB, UAH, AZN, DZD, AMD, BYN, BOB, VND, EGP, IRR, CUP, MMK, GEL, MDL, NGN, TMT, RSD, KGS, TJS, BDT, KZT, MNT, UZS, ETB
+
+**Pegs oficiales al USD (5):**  
+AED, SAR, QAR, BHD, OMR
+
+**Divisas opcionales de bancos centrales hispanoamericanos (6):**  
+ARS, CLP, COP, PYG, PEN, UYU
+
+Las divisas hispanoamericanas opcionales se pueden activar individualmente desde las opciones de la aplicación.
+
+## Compatibilidad
+
+**Entorno probado:** Fedora KDE Plasma sobre Wayland.
+
+Libre Kambio se distribuye como **Flatpak** y se espera que funcione en distribuciones Linux modernas x86_64 con soporte para Flatpak y Wayland. Otras distribuciones y entornos de escritorio todavía no se han probado de forma exhaustiva.
+
+La compilación Flatpak actual está destinada a **x86_64** y **Wayland**. Las sesiones exclusivamente X11 y otras arquitecturas de CPU no están soportadas actualmente por la compilación publicada.
+
 ## Aviso importante
 
 > **Información de referencia únicamente.** Los tipos de cambio y las conversiones pueden estar retrasados, incompletos o ser inexactos y no se garantizan como tipos transaccionales. Libre Kambio no presta asesoramiento financiero, de inversión, contable, fiscal ni jurídico. Verifica los valores importantes con la fuente oficial original y, cuando corresponda, con tu banco o asesor profesional. **El uso del software y de sus resultados se realiza bajo tu propia responsabilidad.**
