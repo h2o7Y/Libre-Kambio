@@ -43,7 +43,7 @@ USD_PEGS = {
     "OMR": OMR_USD_PEG,
 }
 
-USER_AGENT = "Libre-Kambio/1.9.31 (+local desktop app)"
+USER_AGENT = "Libre-Kambio/1.9.32 (+local desktop app)"
 
 # Primary-source policy. If a fresh response from the configured primary source
 # no longer contains one of these currencies, the app deliberately stops

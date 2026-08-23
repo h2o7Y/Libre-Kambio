@@ -91,7 +91,7 @@ from rates import (
 )
 
 APP_NAME = "Libre Kambio"
-APP_VERSION = "1.9.31"
+APP_VERSION = "1.9.32"
 
 PRIMARY = ["EUR", "JPY", "GBP", "PLN", "SEK", "TRY", "USD", "CZK", "AED", "SAR", "RUB", "UAH"]
 META = {
@@ -935,6 +935,177 @@ class OrganizerTable(QTableWidget):
             self._show_insert_line(self._insert_row)
 
 
+class GroupOrganizerList(QListWidget):
+    """Flat group organizer with safe between-row manual reordering.
+
+    Native Qt drag/drop is deliberately disabled here for the same reason as
+    in OrganizerTable: an InternalMove drop *on* an item can trigger model
+    move semantics that are unsafe for an organizer.  We only calculate a
+    between-item insertion position with ordinary mouse events, then move the
+    complete QListWidgetItem ourselves.  A group can therefore move above or
+    below another group, but can never be dropped *into* another group.
+    """
+
+    orderChanged = Signal()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self._press_pos = None
+        self._dragged_name: str | None = None
+        self._manual_dragging = False
+        self._insert_row = -1
+
+        # Critical safety choice: no native QListWidget DnD at all.
+        self.setDragEnabled(False)
+        self.setAcceptDrops(False)
+        self.viewport().setAcceptDrops(False)
+        self.setDragDropMode(QAbstractItemView.DragDropMode.NoDragDrop)
+        self.setDropIndicatorShown(False)
+
+        self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+
+        self._drop_line = QFrame(self.viewport())
+        self._drop_line.setFixedHeight(2)
+        self._drop_line.setStyleSheet('background-color: rgba(104, 176, 220, 0.65); border: none;')
+        self._drop_line.hide()
+
+    def _name_at(self, row: int) -> str | None:
+        item = self.item(row) if 0 <= row < self.count() else None
+        if item is None:
+            return None
+        return normalize_group_name(item.data(Qt.ItemDataRole.UserRole) or item.text())
+
+    def _row_for_name(self, name: str | None) -> int:
+        if not name:
+            return -1
+        for row in range(self.count()):
+            if self._name_at(row) == name:
+                return row
+        return -1
+
+    def move_item(self, source_row: int, target_row: int) -> bool:
+        """Move one whole group item to a between-row insertion index."""
+        count = self.count()
+        if not (0 <= source_row < count):
+            return False
+        target_row = max(0, min(target_row, count))
+        if source_row < target_row:
+            target_row -= 1
+        if target_row == source_row:
+            return True
+
+        self.blockSignals(True)
+        try:
+            item = self.takeItem(source_row)
+            if item is None:
+                return False
+            target_row = max(0, min(target_row, self.count()))
+            self.insertItem(target_row, item)
+            self.setCurrentRow(target_row)
+        finally:
+            self.blockSignals(False)
+        self.orderChanged.emit()
+        return True
+
+    def _insert_row_for_y(self, y: int) -> int:
+        count = self.count()
+        if count <= 0:
+            return 0
+        item = self.itemAt(4, y)
+        if item is None:
+            first_rect = self.visualItemRect(self.item(0))
+            return 0 if y < first_rect.top() else count
+        row = self.row(item)
+        rect = self.visualItemRect(item)
+        return row if y < rect.center().y() else row + 1
+
+    def _show_insert_line(self, insert_row: int):
+        count = self.count()
+        if count <= 0:
+            self._drop_line.hide()
+            return
+        if insert_row <= 0:
+            y = self.visualItemRect(self.item(0)).top()
+        elif insert_row >= count:
+            y = self.visualItemRect(self.item(count - 1)).bottom() + 1
+        else:
+            y = self.visualItemRect(self.item(insert_row)).top()
+        self._drop_line.setGeometry(0, max(0, int(y) - 1), self.viewport().width(), 2)
+        self._drop_line.raise_()
+        self._drop_line.show()
+
+    def _auto_scroll(self, y: int):
+        margin = 24
+        bar = self.verticalScrollBar()
+        if y < margin:
+            bar.setValue(max(bar.minimum(), bar.value() - 1))
+        elif y > self.viewport().height() - margin:
+            bar.setValue(min(bar.maximum(), bar.value() + 1))
+
+    def _reset_manual_drag(self):
+        self._press_pos = None
+        self._dragged_name = None
+        self._manual_dragging = False
+        self._insert_row = -1
+        self._drop_line.hide()
+        self.viewport().unsetCursor()
+
+    def mousePressEvent(self, event):
+        super().mousePressEvent(event)
+        if event.button() == Qt.MouseButton.LeftButton:
+            pos = event.position().toPoint()
+            item = self.itemAt(pos)
+            self._press_pos = pos
+            self._dragged_name = (
+                normalize_group_name(item.data(Qt.ItemDataRole.UserRole) or item.text())
+                if item is not None
+                else None
+            )
+            self._manual_dragging = False
+            self._insert_row = -1
+        else:
+            self._reset_manual_drag()
+
+    def mouseMoveEvent(self, event):
+        if self.state() == QAbstractItemView.State.EditingState:
+            super().mouseMoveEvent(event)
+            return
+        if (
+            self._dragged_name
+            and self._press_pos is not None
+            and event.buttons() & Qt.MouseButton.LeftButton
+        ):
+            pos = event.position().toPoint()
+            distance = (pos - self._press_pos).manhattanLength()
+            if not self._manual_dragging and distance >= QApplication.startDragDistance():
+                self._manual_dragging = True
+                self.viewport().setCursor(Qt.CursorShape.ClosedHandCursor)
+            if self._manual_dragging:
+                self._auto_scroll(pos.y())
+                self._insert_row = self._insert_row_for_y(pos.y())
+                self._show_insert_line(self._insert_row)
+                event.accept()
+                return
+        super().mouseMoveEvent(event)
+
+    def mouseReleaseEvent(self, event):
+        if self._manual_dragging and self._dragged_name and event.button() == Qt.MouseButton.LeftButton:
+            source_row = self._row_for_name(self._dragged_name)
+            insert_row = self._insert_row_for_y(event.position().toPoint().y())
+            self._reset_manual_drag()
+            if source_row >= 0:
+                self.move_item(source_row, insert_row)
+            event.accept()
+            return
+        self._reset_manual_drag()
+        super().mouseReleaseEvent(event)
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        if self._drop_line.isVisible() and self._insert_row >= 0:
+            self._show_insert_line(self._insert_row)
+
+
 class CurrencyCard(QFrame):
     clicked = Signal(str)
     copy_requested = Signal(str)
@@ -1410,13 +1581,11 @@ class MainWindow(QMainWindow):
         self.add_group_btn.clicked.connect(self._add_group)
         add_row.addWidget(self.add_group_btn)
         left_box.addLayout(add_row)
-        self.group_list = QListWidget()
-        self.group_list.setDragDropMode(QAbstractItemView.DragDropMode.InternalMove)
-        self.group_list.setDefaultDropAction(Qt.DropAction.MoveAction)
+        self.group_list = GroupOrganizerList()
         self.group_list.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked | QAbstractItemView.EditTrigger.EditKeyPressed)
         self.group_list.itemChanged.connect(self._on_group_item_changed)
         self.group_list.currentItemChanged.connect(self._update_group_color_button)
-        self.group_list.model().rowsMoved.connect(self._on_group_rows_moved)
+        self.group_list.orderChanged.connect(self._on_group_rows_moved)
         left_box.addWidget(self.group_list, 1)
         left_buttons = QHBoxLayout()
         self.remove_group_btn = QPushButton()
@@ -1778,7 +1947,7 @@ class MainWindow(QMainWindow):
         for row, name in enumerate(self.group_order):
             item = QListWidgetItem(localized_group_name(name, self.language))
             item.setData(Qt.ItemDataRole.UserRole, name)
-            item.setFlags(item.flags() | Qt.ItemFlag.ItemIsEditable | Qt.ItemFlag.ItemIsDragEnabled | Qt.ItemFlag.ItemIsDropEnabled | Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable)
+            item.setFlags((item.flags() | Qt.ItemFlag.ItemIsEditable | Qt.ItemFlag.ItemIsEnabled | Qt.ItemFlag.ItemIsSelectable) & ~Qt.ItemFlag.ItemIsDragEnabled & ~Qt.ItemFlag.ItemIsDropEnabled)
             pix = QPixmap(14, 14)
             pix.fill(QColor(self.group_colors.get(name, default_group_color(name))))
             item.setIcon(QIcon(pix))

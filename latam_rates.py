@@ -15,7 +15,7 @@ import urllib.request
 import unicodedata
 import xml.etree.ElementTree as ET
 
-USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Libre-Kambio/1.9.31"
+USER_AGENT = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Libre-Kambio/1.9.32"
 
 # BCRA v4: discover the A 3500 variable by description instead of trusting a
 # hard-coded metadata shape.  The detailed /5 endpoint is retained as an

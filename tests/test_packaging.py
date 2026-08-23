@@ -174,6 +174,28 @@ class PackagingPrivacyTests(unittest.TestCase):
         self.assertNotIn("QAbstractItemView.DragDropMode.InternalMove", organizer)
 
 
+    def test_group_reorder_disables_native_qt_drag_drop(self):
+        main_source = (ROOT / "main.py").read_text(encoding="utf-8")
+        organizer = main_source.split("class GroupOrganizerList(QListWidget):", 1)[1].split("class CurrencyCard", 1)[0]
+        self.assertIn("self.setDragEnabled(False)", organizer)
+        self.assertIn("self.setAcceptDrops(False)", organizer)
+        self.assertIn("self.viewport().setAcceptDrops(False)", organizer)
+        self.assertIn("QAbstractItemView.DragDropMode.NoDragDrop", organizer)
+        self.assertIn("def mouseMoveEvent", organizer)
+        self.assertIn("def mouseReleaseEvent", organizer)
+        self.assertIn("def move_item", organizer)
+        self.assertNotIn("QAbstractItemView.DragDropMode.InternalMove", organizer)
+
+    def test_group_rows_cannot_be_drop_targets(self):
+        main_source = (ROOT / "main.py").read_text(encoding="utf-8")
+        population = main_source.split("def _populate_group_list", 1)[1].split("def _populate_group_assignments", 1)[0]
+        self.assertIn("~Qt.ItemFlag.ItemIsDragEnabled", population)
+        self.assertIn("~Qt.ItemFlag.ItemIsDropEnabled", population)
+        self.assertNotIn("| Qt.ItemFlag.ItemIsDropEnabled", population)
+        self.assertIn("self.group_list = GroupOrganizerList()", main_source)
+        self.assertIn("self.group_list.orderChanged.connect(self._on_group_rows_moved)", main_source)
+
+
     def test_converter_exposes_symbol_position_option(self):
         main_source = (ROOT / "main.py").read_text(encoding="utf-8")
         self.assertIn('SYMBOL_POSITIONS = {"before_all", "before_code", "after_code", "after"}', main_source)

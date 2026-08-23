@@ -2,6 +2,12 @@
 
 All notable changes to Libre Kambio are documented here.
 
+## 1.9.32 — 2026-08-23
+
+- Fixed group reordering so groups can only be moved above or below one another.
+- Disabled native Qt drag/drop in the Groups list and replaced it with safe manual between-row reordering.
+- Dropping a group over another group can no longer nest, overwrite or make a group disappear.
+
 ## 1.9.31 — 2026-08-22
 
 - Shortened the public product name to **Libre Kambio** while keeping the existing Flatpak App ID for upgrade compatibility.

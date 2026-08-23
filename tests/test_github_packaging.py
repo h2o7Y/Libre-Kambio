@@ -78,7 +78,7 @@ class GithubPackagingTests(unittest.TestCase):
         workflow = (ROOT / ".github/workflows/flatpak.yml").read_text(encoding="utf-8")
         bundle_script = (ROOT / "build-bundle-flatpak.sh").read_text(encoding="utf-8")
         self.assertIn("Libre-Kambio-${{ steps.app.outputs.version }}.flatpak", workflow)
-        self.assertIn("Libre-Kambio-1.9.31.flatpak", bundle_script)
+        self.assertIn("Libre-Kambio-1.9.32.flatpak", bundle_script)
 
 
 if __name__ == "__main__":

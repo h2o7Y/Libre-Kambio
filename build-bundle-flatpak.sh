@@ -20,5 +20,5 @@ flatpak install --user -y flathub \
   "io.qt.PySide.BaseApp//$RUNTIME"
 rm -rf .flatpak-build .flatpak-repo
 flatpak-builder --repo=.flatpak-repo --force-clean .flatpak-build io.github.h2o7y.LibreKambioCurrency.json
-flatpak build-bundle .flatpak-repo Libre-Kambio-1.9.31.flatpak "$APP_ID"
-echo "Creado: $HERE/Libre-Kambio-1.9.31.flatpak"
+flatpak build-bundle .flatpak-repo Libre-Kambio-1.9.32.flatpak "$APP_ID"
+echo "Creado: $HERE/Libre-Kambio-1.9.32.flatpak"

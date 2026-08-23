@@ -7,7 +7,7 @@
 
 Conversión instantánea y simultánea en múltiples divisas usando datos oficiales de tipos de cambio del **Banco Central Europeo (BCE)**, el **Banco de Rusia (CBR)** y, opcionalmente, determinados bancos centrales de Hispanoamérica.
 
-**Versión actual: 1.9.31**
+**Versión actual: 1.9.32**
 
 [English](README.md)
 
@@ -132,10 +132,10 @@ El nombre visible del producto es **Libre Kambio**. Se mantiene el identificador
 ./build-bundle-flatpak.sh
 ```
 
-En la versión 1.9.31 genera:
+En la versión 1.9.32 genera:
 
 ```text
-Libre-Kambio-1.9.31.flatpak
+Libre-Kambio-1.9.32.flatpak
 ```
 
 ## Comprobaciones de desarrollo
