@@ -27,6 +27,47 @@ Libre Kambio is a privacy-friendly Linux desktop currency converter built around
 
 **Official central-bank data · Instant multi-currency conversion · ECB + Bank of Russia · USD pegs · Independent cross-checking · Optional Latin American central-bank sources · Custom organization · Privacy-friendly · Open source · Linux desktop**
 
+
+## Screenshots
+
+### Instant multi-currency conversion
+
+![Libre Kambio multi-currency converter](docs/screenshots/converter-overview.png)
+
+### Flexible base currency
+
+Choose any supported currency as the base and instantly recalculate all visible currencies.
+
+![Libre Kambio with PLN as base currency](docs/screenshots/converter-pln.png)
+
+### Optional Latin American currencies
+
+![Libre Kambio Latin American currencies](docs/screenshots/converter-latin-america.png)
+
+### Currency management
+
+Control currency visibility, order and regional organization.
+
+![Libre Kambio currency management](docs/screenshots/currency-management.png)
+
+### Custom groups
+
+Create your own currency groups and arrange them to match your workflow.
+
+![Libre Kambio custom currency groups](docs/screenshots/custom-groups.png)
+
+### Official data sources
+
+See the official source and calculation method used for each displayed currency.
+
+![Libre Kambio official data sources](docs/screenshots/official-sources.png)
+
+### Options
+
+Customize labels, symbols, decimal formatting, verification badges and optional currencies.
+
+![Libre Kambio options](docs/screenshots/options.png)
+
 ## Supported currencies (65)
 
 Libre Kambio currently supports **65 currencies**:

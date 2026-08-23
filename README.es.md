@@ -27,6 +27,47 @@ Libre Kambio es un conversor de divisas de escritorio para Linux, respetuoso con
 
 **Datos oficiales de bancos centrales · Conversión instantánea multidivisa · BCE + Banco de Rusia · Pegs USD · Comprobación independiente · Bancos centrales hispanoamericanos opcionales · Organización personalizada · Privacidad · Código abierto · Escritorio Linux**
 
+
+## Capturas de pantalla
+
+### Conversión instantánea multidivisa
+
+![Conversor multidivisa de Libre Kambio](docs/screenshots/converter-overview.png)
+
+### Moneda base flexible
+
+Puedes elegir cualquier divisa compatible como moneda base y recalcular instantáneamente todas las divisas visibles.
+
+![Libre Kambio con PLN como moneda base](docs/screenshots/converter-pln.png)
+
+### Divisas hispanoamericanas opcionales
+
+![Divisas hispanoamericanas en Libre Kambio](docs/screenshots/converter-latin-america.png)
+
+### Gestión de divisas
+
+Controla la visibilidad, el orden y la organización regional de las divisas.
+
+![Gestión de divisas de Libre Kambio](docs/screenshots/currency-management.png)
+
+### Grupos personalizados
+
+Crea tus propios grupos de divisas y ordénalos según tus necesidades.
+
+![Grupos personalizados de Libre Kambio](docs/screenshots/custom-groups.png)
+
+### Fuentes oficiales
+
+Consulta la fuente oficial y el método de cálculo utilizado para cada divisa.
+
+![Fuentes oficiales de Libre Kambio](docs/screenshots/official-sources.png)
+
+### Opciones
+
+Personaliza etiquetas, símbolos, formato decimal, comprobaciones y divisas opcionales.
+
+![Opciones de Libre Kambio](docs/screenshots/options.png)
+
 ## Divisas compatibles (65)
 
 Libre Kambio admite actualmente **65 divisas**:
