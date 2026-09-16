@@ -74,11 +74,17 @@ class GithubPackagingTests(unittest.TestCase):
         self.assertIn('"reference_disclaimer": "Reference rates only', main)
         self.assertIn('self.reference_disclaimer.setText(ui_text(self.language, "reference_disclaimer"))', main)
 
+    def test_pyside_startup_error_does_not_suggest_host_dnf(self):
+        main = (ROOT / "main.py").read_text(encoding="utf-8")
+        self.assertNotIn("sudo dnf install python3-pyside6", main)
+        self.assertIn("runtime Flatpak", main)
+        self.assertIn("except ModuleNotFoundError", main)
+
     def test_release_artifact_uses_short_project_name(self):
         workflow = (ROOT / ".github/workflows/flatpak.yml").read_text(encoding="utf-8")
         bundle_script = (ROOT / "build-bundle-flatpak.sh").read_text(encoding="utf-8")
         self.assertIn("Libre-Kambio-${{ steps.app.outputs.version }}.flatpak", workflow)
-        self.assertIn("Libre-Kambio-1.9.32.flatpak", bundle_script)
+        self.assertIn("Libre-Kambio-1.9.33.flatpak", bundle_script)
 
 
 if __name__ == "__main__":

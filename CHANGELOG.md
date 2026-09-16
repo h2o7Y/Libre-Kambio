@@ -2,6 +2,12 @@
 
 All notable changes to Libre Kambio are documented here.
 
+## 1.9.33 — 2026-09-16
+
+- Rebuilt Libre Kambio against the updated PySide6 / Qt 6.11.2 Flatpak runtime after the KDE Platform 6.11 runtime update caused older builds to fail at startup.
+- Fixed the startup diagnostic so a PySide6/Qt binary incompatibility is no longer incorrectly reported as PySide6 being missing from Fedora.
+- No currency-conversion logic or user-data format changes.
+
 ## 1.9.32 — 2026-08-23
 
 - Fixed group reordering so groups can only be moved above or below one another.

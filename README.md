@@ -7,7 +7,7 @@
 
 Instant, simultaneous multi-currency conversion using official exchange-rate data from the **European Central Bank (ECB)**, the **Bank of Russia (CBR)** and, optionally, selected central banks in Spanish-speaking Latin America.
 
-**Current release: 1.9.32**
+**Current release: 1.9.33**
 
 [Español](README.es.md)
 
@@ -173,10 +173,10 @@ The visible product name is **Libre Kambio**. The existing Flatpak application I
 ./build-bundle-flatpak.sh
 ```
 
-For version 1.9.32 this creates:
+For version 1.9.33 this creates:
 
 ```text
-Libre-Kambio-1.9.32.flatpak
+Libre-Kambio-1.9.33.flatpak
 ```
 
 ## Development checks

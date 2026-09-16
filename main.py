@@ -42,8 +42,19 @@ try:
         QVBoxLayout,
         QWidget,
     )
+except ModuleNotFoundError:
+    print(
+        "PySide6 o una de sus dependencias no está disponible dentro del runtime de Libre Kambio. "
+        "Reinstala o reconstruye la aplicación Flatpak.",
+        file=sys.stderr,
+    )
+    raise
 except ImportError:
-    print("Falta PySide6. En Fedora: sudo dnf install python3-pyside6", file=sys.stderr)
+    print(
+        "PySide6/Qt no pudo cargarse. El runtime Flatpak puede ser incompatible con esta "
+        "compilación de Libre Kambio. Actualiza o reconstruye la aplicación y sus runtimes Flatpak.",
+        file=sys.stderr,
+    )
     raise
 
 
@@ -91,7 +102,7 @@ from rates import (
 )
 
 APP_NAME = "Libre Kambio"
-APP_VERSION = "1.9.32"
+APP_VERSION = "1.9.33"
 
 PRIMARY = ["EUR", "JPY", "GBP", "PLN", "SEK", "TRY", "USD", "CZK", "AED", "SAR", "RUB", "UAH"]
 META = {
